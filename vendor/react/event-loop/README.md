@@ -12,38 +12,38 @@ single [`run()`](#run) call that is controlled by the user.
 
 **Table of Contents**
 
-* [Quickstart example](#quickstart-example)
-* [Usage](#usage)
-    * [Loop](#loop)
-        * [Loop methods](#loop-methods)
-        * [Loop autorun](#loop-autorun)
-        * [get()](#get)
-    * [~~Factory~~](#factory)
-        * [~~create()~~](#create)
-    * [Loop implementations](#loop-implementations)
-        * [StreamSelectLoop](#streamselectloop)
-        * [ExtEventLoop](#exteventloop)
-        * [ExtEvLoop](#extevloop)
-        * [ExtUvLoop](#extuvloop)
-        * [~~ExtLibeventLoop~~](#extlibeventloop)
-        * [~~ExtLibevLoop~~](#extlibevloop)
-    * [LoopInterface](#loopinterface)
-        * [run()](#run)
-        * [stop()](#stop)
-        * [addTimer()](#addtimer)
-        * [addPeriodicTimer()](#addperiodictimer)
-        * [cancelTimer()](#canceltimer)
-        * [futureTick()](#futuretick)
-        * [addSignal()](#addsignal)
-        * [removeSignal()](#removesignal)
-        * [addReadStream()](#addreadstream)
-        * [addWriteStream()](#addwritestream)
-        * [removeReadStream()](#removereadstream)
-        * [removeWriteStream()](#removewritestream)
-* [Install](#install)
-* [Tests](#tests)
-* [License](#license)
-* [More](#more)
+- [Quickstart example](#quickstart-example)
+- [Usage](#usage)
+  - [Loop](#loop)
+    - [Loop methods](#loop-methods)
+    - [Loop autorun](#loop-autorun)
+    - [get()](#get)
+  - [~~Factory~~](#factory)
+    - [~~create()~~](#create)
+  - [Loop implementations](#loop-implementations)
+    - [StreamSelectLoop](#streamselectloop)
+    - [ExtEventLoop](#exteventloop)
+    - [ExtEvLoop](#extevloop)
+    - [ExtUvLoop](#extuvloop)
+    - [~~ExtLibeventLoop~~](#extlibeventloop)
+    - [~~ExtLibevLoop~~](#extlibevloop)
+  - [LoopInterface](#loopinterface)
+    - [run()](#run)
+    - [stop()](#stop)
+    - [addTimer()](#addtimer)
+    - [addPeriodicTimer()](#addperiodictimer)
+    - [cancelTimer()](#canceltimer)
+    - [futureTick()](#futuretick)
+    - [addSignal()](#addsignal)
+    - [removeSignal()](#removesignal)
+    - [addReadStream()](#addreadstream)
+    - [addWriteStream()](#addwritestream)
+    - [removeReadStream()](#removereadstream)
+    - [removeWriteStream()](#removewritestream)
+- [Install](#install)
+- [Tests](#tests)
+- [License](#license)
+- [More](#more)
 
 ## Quickstart example
 
@@ -147,18 +147,18 @@ The `Loop` class exists as a convenient global accessor for the event loop.
 The `Loop` class provides all methods that exist on the [`LoopInterface`](#loopinterface)
 as static methods:
 
-* [run()](#run)
-* [stop()](#stop)
-* [addTimer()](#addtimer)
-* [addPeriodicTimer()](#addperiodictimer)
-* [cancelTimer()](#canceltimer)
-* [futureTick()](#futuretick)
-* [addSignal()](#addsignal)
-* [removeSignal()](#removesignal)
-* [addReadStream()](#addreadstream)
-* [addWriteStream()](#addwritestream)
-* [removeReadStream()](#removereadstream)
-* [removeWriteStream()](#removewritestream)
+- [run()](#run)
+- [stop()](#stop)
+- [addTimer()](#addtimer)
+- [addPeriodicTimer()](#addperiodictimer)
+- [cancelTimer()](#canceltimer)
+- [futureTick()](#futuretick)
+- [addSignal()](#addsignal)
+- [removeSignal()](#removesignal)
+- [addReadStream()](#addreadstream)
+- [addWriteStream()](#addwritestream)
+- [removeReadStream()](#removereadstream)
+- [removeWriteStream()](#removewritestream)
 
 If you're working with the event loop in your application code, it's often
 easiest to directly interface with the static methods defined on the `Loop` class
@@ -333,10 +333,10 @@ event loop implementations provided.
 
 All of the event loops support these features:
 
-* File descriptor polling
-* One-off timers
-* Periodic timers
-* Deferred execution on future loop tick
+- File descriptor polling
+- One-off timers
+- Periodic timers
+- Deferred execution on future loop tick
 
 For most consumers of this package, the underlying event loop implementation is
 an implementation detail.
@@ -408,7 +408,6 @@ This loop uses the [`ev` PECL extension](https://pecl.php.net/package/ev),
 that provides an interface to `libev` library.
 `libev` itself supports a number of system-specific backends (epoll, kqueue).
 
-
 This loop is known to work with PHP 5.4 through PHP 8+.
 
 #### ExtUvLoop
@@ -439,7 +438,7 @@ Accordingly, neither the [`Loop` class](#loop) nor the deprecated
 [`Factory` class](#factory) will try to use this event loop on PHP 7.
 
 This event loop is known to trigger a readable listener only if
-the stream *becomes* readable (edge-triggered) and may not trigger if the
+the stream _becomes_ readable (edge-triggered) and may not trigger if the
 stream has already been readable from the beginning.
 This also implies that a stream may not be recognized as readable when data
 is still left in PHP's internal stream buffers.
@@ -527,7 +526,7 @@ The return value of the timer callback function will be ignored and has
 no effect, so for performance reasons you're recommended to not return
 any excessive data structures.
 
-This method returns a timer instance. The same timer instance will also be 
+This method returns a timer instance. The same timer instance will also be
 passed into the timer callback function as described above.
 You can invoke [`cancelTimer`](#canceltimer) to cancel a pending timer.
 Unlike [`addPeriodicTimer()`](#addperiodictimer), this method will ensure
@@ -596,10 +595,10 @@ The return value of the timer callback function will be ignored and has
 no effect, so for performance reasons you're recommended to not return
 any excessive data structures.
 
-This method returns a timer instance. The same timer instance will also be 
+This method returns a timer instance. The same timer instance will also be
 passed into the timer callback function as described above.
-Unlike [`addTimer()`](#addtimer), this method will ensure the callback 
-will be invoked infinitely after the given interval or until you invoke 
+Unlike [`addTimer()`](#addtimer), this method will ensure the callback
+will be invoked infinitely after the given interval or until you invoke
 [`cancelTimer`](#canceltimer).
 
 ```php
@@ -769,9 +768,9 @@ Any attempts to remove listeners that aren't registered will be ignored.
 #### addReadStream()
 
 > Advanced! Note that this low-level API is considered advanced usage.
-  Most use cases should probably use the higher-level
-  [readable Stream API](https://github.com/reactphp/stream#readablestreaminterface)
-  instead.
+> Most use cases should probably use the higher-level
+> [readable Stream API](https://github.com/reactphp/stream#readablestreaminterface)
+> instead.
 
 The `addReadStream(resource $stream, callable $callback): void` method can be used to
 register a listener to be notified when a stream is ready to read.
@@ -812,7 +811,7 @@ The execution order of listeners when multiple streams become ready at
 the same time is not guaranteed.
 
 Some event loop implementations are known to only trigger the listener if
-the stream *becomes* readable (edge-triggered) and may not trigger if the
+the stream _becomes_ readable (edge-triggered) and may not trigger if the
 stream has already been readable from the beginning.
 This also implies that a stream may not be recognized as readable when data
 is still left in PHP's internal stream buffers.
@@ -822,9 +821,9 @@ to disable PHP's internal read buffer in this case.
 #### addWriteStream()
 
 > Advanced! Note that this low-level API is considered advanced usage.
-  Most use cases should probably use the higher-level
-  [writable Stream API](https://github.com/reactphp/stream#writablestreaminterface)
-  instead.
+> Most use cases should probably use the higher-level
+> [writable Stream API](https://github.com/reactphp/stream#writablestreaminterface)
+> instead.
 
 The `addWriteStream(resource $stream, callable $callback): void` method can be used to
 register a listener to be notified when a stream is ready to write.
@@ -897,7 +896,7 @@ See also the [CHANGELOG](CHANGELOG.md) for details about version upgrades.
 This project aims to run on any platform and thus does not require any PHP
 extensions and supports running on legacy PHP 5.3 through current PHP 8+ and
 HHVM.
-It's *highly recommended to use PHP 7+* for this project.
+It's _highly recommended to use PHP 7+_ for this project.
 
 Installing any of the event loop extensions is suggested, but entirely optional.
 See also [event loop implementations](#loop-implementations) for more details.
@@ -923,8 +922,8 @@ MIT, see [LICENSE file](LICENSE).
 
 ## More
 
-* See our [Stream component](https://github.com/reactphp/stream) for more
+- See our [Stream component](https://github.com/reactphp/stream) for more
   information on how streams are used in real-world applications.
-* See our [users wiki](https://github.com/reactphp/react/wiki/Users) and the
+- See our [users wiki](https://github.com/reactphp/react/wiki/Users) and the
   [dependents on Packagist](https://packagist.org/packages/react/event-loop/dependents)
   for a list of packages that use the EventLoop in real-world applications.

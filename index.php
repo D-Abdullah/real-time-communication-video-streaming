@@ -485,16 +485,6 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
     <!-- BEGIN PAGE LEVEL JS-->
     <script src="./app-assets/js/scripts/pages/chat-application.js" type="text/javascript"></script>
     <!-- END PAGE LEVEL JS-->
-    <script type="text/javascript">
-        var conn = new WebSocket('ws://localhost:8080');
-        conn.onopen = function(e) {
-            console.log("Connection established!");
-        };
-
-        conn.onmessage = function(e) {
-            console.log(e.data);
-        };
-    </script>
 </body>
 
 </html>

@@ -1,4 +1,9 @@
 <?php
+
+namespace MyApp;
+
+use PDO;
+
 class DB
 {
     public function __construct()

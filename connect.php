@@ -492,8 +492,8 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
                             <p class="text-black">do you want to call this user</p>
                             <button type="button" id="rtcUserCallButton" data-user="<?php echo $profile->id ?>" class="mt-2 btn border-0 btn-outline-blue"><i style="font-size: 50px;background-color: #800; padding:15px; color:#fff;border-radius: 50%;cursor: pointer;" class="la la-video-camera la-4x"></i></button>
                         </div>
-                        <video id="localVideo"></video>
-                        <video id="remoteVideo"></video>
+                        <video id="localVideo" autoplay></video>
+                        <video id="remoteVideo" autoplay></video>
                         <button id="hangupBtn" class="btn btn-danger">hangup</button>
                     </section>
                 </div>
@@ -522,18 +522,10 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
     <!-- BEGIN PAGE LEVEL JS-->
     <script src="./app-assets/js/scripts/pages/chat-application.js" type="text/javascript"></script>
     <!-- END PAGE LEVEL JS-->
-
-    <script src="./assets/js/scripts.js" type="text/javascript"></script>
     <script type="text/javascript">
-        var conn = new WebSocket('ws://localhost:8080');
-        conn.onopen = function(e) {
-            console.log("Connection established!");
-        };
-
-        conn.onmessage = function(e) {
-            console.log(e.data);
-        };
+        var conn = new WebSocket('ws://localhost:8080/?token=<?php echo $userObj->sessionId ?>');
     </script>
+    <script src="./assets/js/scripts.js" type="text/javascript"></script>
     <script src="https://webrtc.github.io/adapter/adapter-latest.js" type="text/javascript"></script>
 </body>
 

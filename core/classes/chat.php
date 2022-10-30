@@ -8,18 +8,26 @@ use Ratchet\ConnectionInterface;
 class Chat implements MessageComponentInterface
 {
     protected $clients;
+    public    $userObj, $data;
 
     public function __construct()
     {
         $this->clients = new \SplObjectStorage;
+        $this->userObj = new \MyApp\User;
     }
 
     public function onOpen(ConnectionInterface $conn)
     {
         // Store the new connection to send messages to later
-        $this->clients->attach($conn);
-
-        echo "New connection! ({$conn->resourceId})\n";
+        $queryString = $conn->httpRequest->getUri()->getQuery();
+        parse_str($queryString, $query);
+        if ($data = $this->userObj->getUserBySession($query['token'])) {
+            $this->data = $data;
+            $conn->data = $data;
+            $this->clients->attach($conn);
+            $this->userObj->updateConnection($conn->resourceId, $data->id);
+            echo "New connection! ({$data->username})\n";
+        }
     }
 
     public function onMessage(ConnectionInterface $from, $msg)
@@ -32,11 +40,20 @@ class Chat implements MessageComponentInterface
             $numRecv,
             $numRecv == 1 ? '' : 's'
         );
-
+        $data = json_decode($msg, true);
+        $sendTo = $this->userObj->getUser($data['sendTo']);
+        $send['sendTo'] = $sendTo->id;
+        $send['by'] = $from->data->id;
+        $send['image'] = $from->data->image;
+        $send['username'] = $from->data->username;
+        $send['type'] = $data['type'];
+        $send['data'] = $data['data'];
         foreach ($this->clients as $client) {
             if ($from !== $client) {
                 // The sender is not the receiver, send to each client connected
-                $client->send($msg);
+                if ($client->resourceId == $sendTo->connection_id || $from == $client) {
+                    $client->send(json_encode($send));
+                }
             }
         }
     }

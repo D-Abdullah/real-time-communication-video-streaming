@@ -4,7 +4,7 @@ session_start();
 require_once 'classes/DB.php';
 require_once 'classes/User.php';
 
-$userObj = new User;
+$userObj = new \MyApp\User;
 
 if (isset($_SESSION['user_id']) || !empty($_SESSION['user_id'])) {
     $user = $userObj->getUser($_SESSION['user_id']);

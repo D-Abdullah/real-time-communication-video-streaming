@@ -1,10 +1,15 @@
 <?php
+
+namespace MyApp;
+
+use PDO;
+
 class User
 {
     public $db, $sessionId;
     public function __construct()
     {
-        $db = new DB;
+        $db = new \MyApp\DB;
         $this->db = $db->connect();
         $this->sessionId = $this->getSessionId();
     }
@@ -78,5 +83,12 @@ class User
         } else {
             return false;
         }
+    }
+    public function updateConnection($connection_id, $user_id)
+    {
+        $stmt = $this->db->prepare("UPDATE `users` SET `connection_id` = :connection_id WHERE id = :id");
+        $stmt->bindParam(":connection_id", $connection_id, PDO::PARAM_STR);
+        $stmt->bindParam(":id", $user_id, PDO::PARAM_INT);
+        $stmt->execute();
     }
 }
