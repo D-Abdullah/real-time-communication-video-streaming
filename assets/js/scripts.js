@@ -11,6 +11,7 @@
   // media info
   const mediaConst = {
     video: true,
+    audio: true,
   };
   // what  to receive from other client
   const options = {
