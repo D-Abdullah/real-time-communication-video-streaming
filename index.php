@@ -4,6 +4,7 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
     header('Location: login.php');
     die();
 }
+$userObj->updateSession();
 ?>
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
@@ -485,6 +486,12 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
     <!-- BEGIN PAGE LEVEL JS-->
     <script src="./app-assets/js/scripts/pages/chat-application.js" type="text/javascript"></script>
     <!-- END PAGE LEVEL JS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/timer.jquery/0.7.0/timer.jquery.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        var conn = new WebSocket('ws://localhost:8080/?token=<?php echo $userObj->sessionId ?>');
+    </script>
+    <script src="./assets/js/scripts.js" type="text/javascript"></script>
+    <script src="https://webrtc.github.io/adapter/adapter-latest.js" type="text/javascript"></script>
 </body>
 
 </html>

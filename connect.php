@@ -492,6 +492,7 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
                             <p class="text-black">do you want to call this user</p>
                             <button type="button" id="rtcUserCallButton" data-user="<?php echo $profile->id ?>" class="mt-2 btn border-0 btn-outline-blue"><i style="font-size: 50px;background-color: #800; padding:15px; color:#fff;border-radius: 50%;cursor: pointer;" class="la la-video-camera la-4x"></i></button>
                         </div>
+                        <h1 id="answerTimer" style="color: black;font-weight: 900; font-size: 2em;"></h1>
                         <video id="localVideo" autoplay></video>
                         <video id="remoteVideo" autoplay></video>
                         <button id="hangupBtn" class="btn btn-danger">hangup</button>
@@ -521,6 +522,8 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
     <!-- END MODERN JS-->
     <!-- BEGIN PAGE LEVEL JS-->
     <script src="./app-assets/js/scripts/pages/chat-application.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/timer.jquery/0.7.0/timer.jquery.js" type="text/javascript"></script>
+
     <!-- END PAGE LEVEL JS-->
     <script type="text/javascript">
         var conn = new WebSocket('ws://localhost:8080/?token=<?php echo $userObj->sessionId ?>');

@@ -11,7 +11,7 @@ class DB
     }
     public function connect()
     {
-        $db = new PDO("mysql:host=192.168.1.67; dbname=rtc", "abdullah", "Asd@123#Abdo");
+        $db = new PDO("mysql:host=127.0.0.1; dbname=rtc", "abdullah", "Asd@123#Abdo");
         return $db;
     }
 }

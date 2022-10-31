@@ -26,7 +26,7 @@ class Chat implements MessageComponentInterface
             $conn->data = $data;
             $this->clients->attach($conn);
             $this->userObj->updateConnection($conn->resourceId, $data->id);
-            echo "New connection! ({$data->username})\n";
+            echo "({$data->username}) is Now Connected \n";
         }
     }
 
@@ -46,6 +46,7 @@ class Chat implements MessageComponentInterface
         $send['by'] = $from->data->id;
         $send['image'] = $from->data->image;
         $send['username'] = $from->data->username;
+        $send['name'] = $from->data->name;
         $send['type'] = $data['type'];
         $send['data'] = $data['data'];
         foreach ($this->clients as $client) {
