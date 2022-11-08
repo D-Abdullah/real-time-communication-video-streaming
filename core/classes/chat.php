@@ -4,6 +4,7 @@ namespace MyApp;
 
 use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
+use SplObjectStorage;
 
 class Chat implements MessageComponentInterface
 {
@@ -12,7 +13,7 @@ class Chat implements MessageComponentInterface
 
     public function __construct()
     {
-        $this->clients = new \SplObjectStorage;
+        $this->clients = new SplObjectStorage;
         $this->userObj = new \MyApp\User;
     }
 

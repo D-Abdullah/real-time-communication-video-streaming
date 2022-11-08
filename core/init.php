@@ -1,10 +1,13 @@
 <?php
+
+use \MyApp\User;
+
 session_start();
 
 require_once 'classes/DB.php';
 require_once 'classes/User.php';
 
-$userObj = new \MyApp\User;
+$userObj = new User;
 
 if (isset($_SESSION['user_id']) || !empty($_SESSION['user_id'])) {
     $user = $userObj->getUser($_SESSION['user_id']);

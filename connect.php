@@ -526,7 +526,7 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
 
     <!-- END PAGE LEVEL JS-->
     <script type="text/javascript">
-        var conn = new WebSocket('ws://localhost:8080/?token=<?php echo $userObj->sessionId ?>');
+        var conn = new WebSocket('ws://localhost:8000/?token=<?php echo $userObj->sessionId ?>');
     </script>
     <script src="./assets/js/scripts.js" type="text/javascript"></script>
     <script src="https://webrtc.github.io/adapter/adapter-latest.js" type="text/javascript"></script>
