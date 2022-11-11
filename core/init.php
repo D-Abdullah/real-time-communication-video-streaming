@@ -1,6 +1,6 @@
 <?php
 
-use \MyApp\User;
+use Core\Classes\User;
 
 session_start();
 

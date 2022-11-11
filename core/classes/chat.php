@@ -1,7 +1,8 @@
 <?php
 
-namespace MyApp;
+namespace Core\Classes;
 
+use Core\Classes\User;
 use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
 use SplObjectStorage;
@@ -14,7 +15,7 @@ class Chat implements MessageComponentInterface
     public function __construct()
     {
         $this->clients = new SplObjectStorage;
-        $this->userObj = new \MyApp\User;
+        $this->userObj = new User;
     }
 
     public function onOpen(ConnectionInterface $conn)

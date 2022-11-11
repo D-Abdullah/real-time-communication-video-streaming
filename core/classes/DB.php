@@ -1,6 +1,6 @@
 <?php
 
-namespace MyApp;
+namespace Core\Classes;
 
 use PDO;
 

@@ -1,7 +1,8 @@
 <?php
 
-namespace MyApp;
+namespace Core\Classes;
 
+use Core\Classes\DB;
 use PDO;
 
 class User
@@ -9,7 +10,7 @@ class User
     public $db, $sessionId;
     public function __construct()
     {
-        $db = new \MyApp\DB;
+        $db = new DB;
         $this->db = $db->connect();
         $this->sessionId = $this->getSessionId();
     }
